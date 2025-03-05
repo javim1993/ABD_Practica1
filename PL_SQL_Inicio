@@ -244,3 +244,23 @@ grant debug any procedure to hr;
 exit;
 */
 
+/* Paso 3.2 Comprobación de las funciones */
+DECLARE
+    v_resultado INTEGER;
+BEGIN
+    v_resultado := reservarPista('Socio1', CURRENT_DATE, 14);
+    IF v_resultado = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Reserva realizada con éxito.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('No hay disponibilidad para la reserva.');
+    END IF;
+
+    v_resultado := anularReserva('Socio1', CURRENT_DATE, 14, 1);
+    IF v_resultado = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Reserva anulada con éxito.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('No se pudo anular la reserva.');
+    END IF;
+END;
+/
+
