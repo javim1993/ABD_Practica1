@@ -235,5 +235,12 @@ FROM
     reservas
 ORDER BY 
     fecha, hora, pista;
+/**/
+
+/* Paso 3.1. Script para dar permisos de debugger
+sqlplus system/1234
+grant debug connect session to hr;
+grant debug any procedure to hr;
+exit;
 */
 
