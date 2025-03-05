@@ -6,6 +6,9 @@ drop sequence seq_pistas;
 
 /* ¿Por qué en las comparacionesde fecha en Oracle conviene utilizar la función trunc?
 En oracle se usa trunc para usar solo la fecha si no un tipo de dato DATE incluye fecha y hora y podemos tener problemas a la hora de trabajar con ellos.
+
+¿Qué es sql%rowcount y cómo funciona?
+Variable de PL/SQL que devuelve el número de filas afectadas por la última instrucción INSERT, UPDATE o DELETE.
 */
 
 create table pistas (
