@@ -202,7 +202,26 @@ BEGIN
         DBMS_OUTPUT.put_line('Reserva 4: MAL');
     END IF;
 END;
-/
+
+/* Paso 2. Ejercicio 2 programación*/
+
+SET SERVEROUTPUT ON
+DECLARE
+    resultado INTEGER;
+BEGIN
+    resultado := anularReserva( 'Socio 1', CURRENT_DATE, 12, 1 );
+    IF resultado = 1 THEN
+        DBMS_OUTPUT.put_line('Reserva de Socio 1 anulada: OK');
+    ELSE
+        DBMS_OUTPUT.put_line('Reserva de Socio 1 anulada: MAL');
+    END IF;
+    resultado := anularReserva( 'Socio 1', date '1920-1-1', 12, 1 );
+    IF resultado = 1 THEN
+        DBMS_OUTPUT.put_line('Reserva de Socio 1 (fecha inexistente) anulada: OK');
+    ELSE
+        DBMS_OUTPUT.put_line('Reserva de Socio 1 (fecha inexistente) anulada: MAL');
+    END IF;
+END;
 /
 */
 
