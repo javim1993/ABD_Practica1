@@ -5,11 +5,28 @@ drop table pistas;
 drop sequence seq_pistas;
 
 /* ¿Por qué en las comparacionesde fecha en Oracle conviene utilizar la función trunc?
-En oracle se usa trunc para usar solo la fecha si no un tipo de dato DATE incluye fecha y hora y podemos tener problemas a la hora de trabajar con ellos.
+En oracle se usa trunc para usar solo la fecha si no un tipo de dato DATE incluye fecha y hora, podemos tener problemas a la hora de trabajar con ellos.
 
 ¿Qué es sql%rowcount y cómo funciona?
 Variable de PL/SQL que devuelve el número de filas afectadas por la última instrucción INSERT, UPDATE o DELETE.
+
+
+¿Qué es una variable de tipo cursor?. ¿Qué variable de tipo cursor hay en la segunda
+función?. ¿Qué efecto tienen las operaciones open, fetch y close?. ¿Qué valores toman
+las propiedades de cursor FOUND y NOTFOUND y en qué caso?
+
+Una variable de tipo cursor en PL/SQL es un mecanismo que permite recorrer los resultados de una consulta fila por fila.
+En la función reservarPista, la variable de tipo cursor es vPistasLibres.
+OPEN -> Deja los datos listos para ser leídos.
+FETCH-> Comprueba que hay algún dato en el cursor.ç
+CLOSE-> Libera la memoria.
+
+Found y NotFound indican el estado del cursor despues de un fetch
+FOUND-> a true si hay datos o false si no los hay.
+NOTFOUND-> a false si hay datos y a true si no los hay.
 */
+
+
 
 create table pistas (
 	nro integer primary key
