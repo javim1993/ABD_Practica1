@@ -223,5 +223,17 @@ BEGIN
     END IF;
 END;
 /
+
+/* Paso 2. Select para comprobar el funcionamiento */
+
+SELECT 
+    pista, 
+    fecha, 
+    hora, 
+    socio 
+FROM 
+    reservas
+ORDER BY 
+    fecha, hora, pista;
 */
 
