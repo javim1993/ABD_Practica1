@@ -4,6 +4,10 @@ drop table reservas;
 drop table pistas;
 drop sequence seq_pistas;
 
+/* ¿Por qué en las comparacionesde fecha en Oracle conviene utilizar la función trunc?
+En oracle se usa trunc para usar solo la fecha si no un tipo de dato DATE incluye fecha y hora y podemos tener problemas a la hora de trabajar con ellos.
+*/
+
 create table pistas (
 	nro integer primary key
 	);
