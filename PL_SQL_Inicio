@@ -24,6 +24,11 @@ CLOSE-> Libera la memoria.
 Found y NotFound indican el estado del cursor despues de un fetch
 FOUND-> a true si hay datos o false si no los hay.
 NOTFOUND-> a false si hay datos y a true si no los hay.
+
+ En la función anularReserva discute si da lo mismo sustituir el rollback por un commit por qué
+No es lo mismo ya que el commit confirmaría los cambios y el rollback deshace los cambios realizados. En este caso si no encuentra fila y hacemos Commit estariamos confirmando la transacción lo 
+que puede no ser optimo. 
+
 */
 
 
