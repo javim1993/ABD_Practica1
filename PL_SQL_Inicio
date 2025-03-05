@@ -113,16 +113,8 @@ RETURN INTEGER IS
         order by nro;
             
     vPista INTEGER;
-	
-    vSocioExistente INTEGER;
 
 BEGIN
-    SELECT COUNT(*) INTO vSocioExistente
-    FROM socios
-    WHERE socio_id = p_socio;
-
-    IF vSocioExistente = 0 THEN
-        RETURN 0;
     END IF;
 
     OPEN vPistasLibres;
