@@ -29,6 +29,12 @@ NOTFOUND-> a false si hay datos y a true si no los hay.
 No es lo mismo ya que el commit confirmaría los cambios y el rollback deshace los cambios realizados. En este caso si no encuentra fila y hacemos Commit estariamos confirmando la transacción lo 
 que puede no ser optimo. 
 
+
+En la función reservarPista investiga si la transacción se puede quedar abierta en algún
+caso. Haz el arreglo correspondiente para que esto no ocurra.
+Veo que se cierra bien salvo y cuando se inserte un valor incorrecto en la fila "INSERT INTO reservas VALUES (vPista, p_fecha, p_hora, p_socio);" ya sea pista, fecha, hora o socio. 
+
+
 */
 
 
@@ -107,8 +113,18 @@ RETURN INTEGER IS
         order by nro;
             
     vPista INTEGER;
+	
+    vSocioExistente INTEGER;
 
 BEGIN
+    SELECT COUNT(*) INTO vSocioExistente
+    FROM socios
+    WHERE socio_id = p_socio;
+
+    IF vSocioExistente = 0 THEN
+        RETURN 0;
+    END IF;
+
     OPEN vPistasLibres;
     FETCH vPistasLibres INTO vPista;
 
