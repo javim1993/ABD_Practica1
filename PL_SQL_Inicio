@@ -168,6 +168,41 @@ begin
      --Continua tu solo....
   
 end;
+
+/* Paso 2. Ejercicio 1 programación*/
+
+SET SERVEROUTPUT ON
+DECLARE
+    resultado INTEGER;
+BEGIN
+    resultado := reservarPista( 'Socio 1', CURRENT_DATE, 12 );
+    IF resultado = 1 THEN
+        DBMS_OUTPUT.put_line('Reserva 1: OK');
+    ELSE
+        DBMS_OUTPUT.put_line('Reserva 1: MAL');
+    END IF;
+    
+    resultado := reservarPista( 'Socio 2', CURRENT_DATE, 12 );
+    IF resultado = 1 THEN
+        DBMS_OUTPUT.put_line('Reserva 2: OK');
+    ELSE
+        DBMS_OUTPUT.put_line('Reserva 2: MAL');
+    END IF;
+    
+    resultado := reservarPista( 'Socio 3', CURRENT_DATE, 12 );
+    IF resultado = 1 THEN
+        DBMS_OUTPUT.put_line('Reserva 3: OK');
+    ELSE
+        DBMS_OUTPUT.put_line('Reserva 3: MAL');
+    END IF;
+    resultado := reservarPista( 'Socio 4', CURRENT_DATE, 12 );
+    IF resultado = 1 THEN
+        DBMS_OUTPUT.put_line('Reserva 4: OK');
+    ELSE
+        DBMS_OUTPUT.put_line('Reserva 4: MAL');
+    END IF;
+END;
+/
 /
 */
 
