@@ -94,36 +94,46 @@ begin
 end;
 /
 
-create or replace FUNCTION reservarPista(
-        p_socio VARCHAR,
-        p_fecha DATE,
-        p_hora INTEGER
-    ) 
+CREATE OR REPLACE FUNCTION reservarPista(
+    p_socio VARCHAR,
+    p_fecha DATE,
+    p_hora INTEGER
+)
 RETURN INTEGER IS
 
     CURSOR vPistasLibres IS
         SELECT nro
-        FROM pistas 
+        FROM pistas
         WHERE nro NOT IN (
             SELECT pista
             FROM reservas
-            WHERE 
+            WHERE
                 trunc(fecha) = trunc(p_fecha) AND
-                hora = p_hora)
-        order by nro;
-            
+                hora = p_hora
+        )
+        ORDER BY nro;
+
     vPista INTEGER;
+    vReservaExistente INTEGER;
 
 BEGIN
+    -- Verificar si la reserva ya existe
+    SELECT COUNT(*) INTO vReservaExistente
+    FROM reservas
+    WHERE trunc(fecha) = trunc(p_fecha)
+      AND hora = p_hora
+      AND socio = p_socio;
+
+    IF vReservaExistente > 0 THEN
+        RETURN 0; -- La reserva ya existe
     END IF;
 
     OPEN vPistasLibres;
     FETCH vPistasLibres INTO vPista;
 
-    IF vPistasLibres%NOTFOUND
-    THEN
+    IF vPistasLibres%NOTFOUND THEN
         CLOSE vPistasLibres;
-        RETURN 0;
+        RETURN 0; -- No hay pistas disponibles
     END IF;
 
     INSERT INTO reservas VALUES (vPista, p_fecha, p_hora, p_socio);
