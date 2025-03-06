@@ -247,6 +247,7 @@ exit;
 */
 
 /* Paso 3.2 Comprobación de las funciones */
+/*
 DECLARE
     v_resultado INTEGER;
 BEGIN
@@ -262,6 +263,55 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('Reserva anulada con éxito.');
     ELSE
         DBMS_OUTPUT.PUT_LINE('No se pudo anular la reserva.');
+    END IF;
+END;
+*/
+/
+
+/* Paso 4 */
+CREATE OR REPLACE PROCEDURE TEST_FUNCIONES_TENIS IS
+    resultado INTEGER;
+BEGIN
+    resultado := reservarPista('Socio 1', CURRENT_DATE, 12);
+    IF resultado = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Reserva 1: OK');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Reserva 1: MAL');
+    END IF;
+
+    resultado := reservarPista('Socio 2', CURRENT_DATE, 12);
+    IF resultado = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Reserva 2: OK');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Reserva 2: MAL');
+    END IF;
+
+    resultado := reservarPista('Socio 3', CURRENT_DATE, 12);
+    IF resultado = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Reserva 3: OK');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Reserva 3: MAL');
+    END IF;
+
+    resultado := reservarPista('Socio 4', CURRENT_DATE, 12);
+    IF resultado = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Reserva 4: OK');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Reserva 4: MAL');
+    END IF;
+
+    resultado := anularReserva('Socio 1', CURRENT_DATE, 12, 1);
+    IF resultado = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Reserva de Socio 1 anulada: OK');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Reserva de Socio 1 anulada: MAL');
+    END IF;
+
+    resultado := anularReserva('Socio 1', DATE '1920-01-01', 12, 1);
+    IF resultado = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Reserva de Socio 1 (fecha inexistente) anulada: OK');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Reserva de Socio 1 (fecha inexistente) anulada: MAL');
     END IF;
 END;
 /
